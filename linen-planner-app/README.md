@@ -1,7 +1,7 @@
 # Linen Paper Co. — Planner web-app (en blanco)
 
 Web-app HTML autónoma reconstruida a partir del bundle de diseño *Linen Paper Co.*
-(planner digital **undated**, edición "All in One"). El cliente la abre con doble
+(planner digital , edición "All in One"). El cliente la abre con doble
 clic y la rellena; todo lo que escribe o marca se guarda solo en su navegador.
 
 ## Build
