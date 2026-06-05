@@ -1,23 +1,30 @@
-name: Build macOS app (.dmg)
+name: Build Mac DMG
 
 on:
-  workflow_dispatch:
-  push:
-    branches: [main]
+  workflow_dispatch
 
 jobs:
-  mac:
+  build:
     runs-on: macos-latest
+
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
-      - run: npm install && npm run build:planner
-      - working-directory: desktop
-        run: npm install && npm run dist:mac
-      - uses: actions/upload-artifact@v4
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build planner
+        run: npm run build:planner
+
+      - name: Build DMG
+        run: npx electron-builder --mac dmg
+
+      - name: Upload DMG
+        uses: actions/upload-artifact@v4
         with:
-          name: linen-planner-macos
-          path: desktop/dist/*.dmg
-          if-no-files-found: error
+          name: mac-dmg
+          path: dist/*.dmg
